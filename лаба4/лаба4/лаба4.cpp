@@ -105,22 +105,47 @@ void deleteEveryM(Queue*& q,int m)
         }
     }
 }
+void menu(Queue*& q)
+{
+    string ans;
+    int m;
+    while (true)
+    {
+        cout << "1 - push back, 2 - push front, 3 - print, 4 - print Rev, 5 - delete each m element, 6 - end\n";
+        cin >> ans;
+        if (ans == "1")
+        {
+            cout << "write number\n";
+            cin >> m;
+            pushBack(q, m);
+        }
+        else if (ans == "2")
+        {
+            cout << "write number\n";
+            cin >> m;
+            pushFront(q, m);
+        }
+        else if (ans == "3")
+            print();
+        else if (ans == "4")
+            printRev();
+        else if (ans == "5")
+        {
+            cout << "write number\n";
+            cin >> m;
+            deleteEveryM(q, m);
+        }
+        else if (ans == "6")
+        {
+            break;
+        }
+    }
+    
 
+}
 int main()
 {
     Queue *q = NULL;
-    
     ::begin = ::end = q;
-    /*pushFront(q, 1);
-    pushFront(q, 2);
-    pushFront(q, 3);
-    pushFront(q, 4);*/
-    pushBack(q, 1);
-    pushBack(q, 2);
-    pushBack(q, 3);
-    pushBack(q, 4);
-    print();
-    deleteEveryM(q,2);
-    print();
-    
+    menu(q);
 }

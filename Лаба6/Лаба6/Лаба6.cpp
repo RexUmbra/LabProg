@@ -1,48 +1,24 @@
 ﻿#include <iostream>
-#include <vector>
+#include <cstdlib>
+#include <cmath>
+
 using namespace std;
 
-void print(vector <vector<double>> vec)
-{
-	int n = vec.size();
-	for (int i = 1; i < n; i++)
-	{
-		for (int j = 1; j < n; j++)
-			cout << vec[i][j] << ' ';
-		cout << '\n';
-	}
-}
-void print(vector<double> vec)
-{
-	int n = vec.size();
-	for (int i = 1; i < n; i++)
-		cout << vec[i] << ' ';
-	cout << '\n';
-}
-void writeVec(vector<vector<double>> a, vector<double> b)
-{
-	int n = a.size();
-	for (int i = 1; i < n; i++)
-	{
-		for (int j = 1; j < n; j++)
-			cin >> a[i][j];
-		cin >> b[i];
-	}
-}
-void t(vector<vector<double>> a, vector<double> b)
-{
-	int n = a.size();
-	vector<double> x(n);
-	vector<double> d(n);
-	vector<vector<double>> s(n, vector<double>(n));
-	d[1] = (a[1][1] > 0) - (a[1][1] < 0);
-}
-int main()
-{
-	int n;
-	cin >> n;
+double f(double x) { return x * x + 10 * pow(sin(x), 2) + 2; }
+double df(double x) { return 2 * x - 10 * sin(x * 2); }
 
-	vector<vector<double>> a(n, vector<double>(n));
-	vector<double> b(n);
-	
+int main() {
+    double tmp, x, eps;
+
+    cout << "eps=";
+    cin >> eps;   
+    cout << "x0=";
+    cin >> x;     
+    tmp = x + 2 * eps;
+    while (fabs(x - tmp) > eps) { 
+        tmp = x;
+        x = x - f(x) / df(x);
+    }
+    cout << "x=" << x;
+    return 0;
 }
